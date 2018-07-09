@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div align="center">
+<div class="card col-4">
+	<h2>{{ book.title }}</h2>
+	<h2>By {{ book.author }}</h2>
+	<h3>Published in {{ book.year }}</h3>
+	<h3>ISBN: {{ book.isbn }}</h3>
+</div>
+
+
+<div class="container">
+	<h1>Reviews</h1>
+	{% for review in book_reviews %}
+	<div class="card col-5" style="color:grey">
+		<p>{{ review.body }}</p>
+		<h6>Rated {{ review.rating}}/5 by {{ review.author }}</h6>
+	</div>
+	{% endfor %}
+</div>
+
+<div class="container">
+	<h2>Goodreads Info</h2>
+	<h3>Average rating: {{ average_rating }}</h3>
+	<h3>Number of ratings: {{ work_ratings_count }}</h3>
+</div>
+
+<div class="container my-2">
+	<h2>Leave a Review...</h2>
+</div>
+
+<div class="container mt-4">
+	<form method="POST" action="/books/{{ book.id }}">
+		<input type="text" name="body" placeholder="Review Text">
+		<select name="rating">
+		    <option value=1>1</option>
+		    <option value=2>2</option>
+		    <option value=3>3</option>
+		    <option value=4>4</option>
+		    <option value=5>5</option>
+	  	</select>
+	<button type="submit" class="btn btn-success">Add Review</button>
+	</form>
+</div>
+</div>
+{% endblock %}

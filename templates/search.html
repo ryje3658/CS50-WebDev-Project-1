@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+	<h1 align="center" class="title mt-3 mb-2">Search for a book!</h1>
+</div>
+
+<div align="center">
+	<form action="{{ url_for('search') }}" method="post">
+		<input type="text" name="search" placeholder="Author, title, or ISBN.">
+		<button class="btn btn-success" type="submit">Search!</button>
+	</form>
+</div>
+
+
+
+<ol>
+	{% for book in books_list %}
+	<li><h6><a href="/books/{{ book.id }}">{{ book.title }} by {{ book.author }}</a></h6></li>
+	{% endfor %}
+</ol>
+
+
+
+{% endblock %}
